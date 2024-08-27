@@ -234,6 +234,7 @@ impl jtd_codegen::target::Target for Target {
                 name,
                 tag_json_name,
                 tag_value,
+                has_additional,
                 fields,
                 ..
             } => {
@@ -268,6 +269,9 @@ impl jtd_codegen::target::Target for Target {
                             field.type_
                         )?;
                     }
+                }
+                if has_additional {
+                    writeln!(out, "  [x: string]: unknown;")?;
                 }
                 writeln!(out, "}}")?;
 
